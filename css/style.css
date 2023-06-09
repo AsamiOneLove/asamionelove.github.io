@@ -1,0 +1,125 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+::-webkit-scrollbar { /* chrome, забираємо скроллбар для краси */
+    width: 0px;  /* ширина scrollbar'a */
+    background: transparent;  /* опціонально */
+}
+
+html {
+    -ms-overflow-style: none;  /* IE 10+ */
+    scrollbar-width: none; /* Firefox */
+}
+
+:root {
+    --index: calc(1vw - 1vh); /* коефіцієнт розрішення екрану */
+    --gutter : 30px; /* відступ від центру */
+    --side-small: 26; /* відносна коротка сторона */
+    --side-big: 36; /* відносна довга сторона */
+    --depth: 4900px; /* задавання глибини */
+    --transition: .75s cubic-bezier(.075, .5, 0, 1); /* декорація анімації */
+}
+
+@font-face { /* підключення шрифтів */
+    font-family: raleway_c;
+    src: url(../fonts/raleway-v22-cyrillic-100.woff2);
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: raleway_c;
+    src: url(../fonts/raleway-v22-cyrillic-300.woff2);
+    font-weight: 300;
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+    font-size: calc(var(--index) * 2);
+    font-family: raleway_c, sans-serif;
+    line-height: 1.75;
+    height: var(--depth);
+    font-weight: 300;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    perspective: 1500px;
+}
+
+.gallery {
+    transform-style: preserve-3d;
+    height: 100%;
+}
+
+.frame {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition), opacity .75s ease;
+    will-change: transform;
+    transform-style: preserve-3d;
+}
+
+h2, h3 {
+    font-weight: 100;
+    text-transform: uppercase;
+}
+
+.frame h2 {
+    text-align: center;
+    font-size: calc(var(--index) * 3.3);
+    width: min-content;
+}
+
+.frame__media {
+    position: relative;
+    width: calc(var(--index) * var(--side-small));
+    height: calc(var(--index) * var(--side-big));
+    background-position: center;
+    background-size: cover;
+}
+
+.frame_left {
+    right: calc(var(--side-small) / 2 * var(--index) + var(--gutter));
+}
+
+.frame_right {
+    left: calc(var(--side-small) / 2 * var(--index) + var(--gutter));
+}
+
+.frame_bg {
+    background-color: rgb(0 0 0 / .88);
+}
+
+.text_right > * {
+    position: relative;
+    left: 18vw;
+}
+
+.text_left > * {
+    position: relative;
+    right: 18vw;
+}
+
+.frame h3 {
+    font-size: calc(var(--index) * 5);
+}
+
+.frame p {
+    max-width: 30vw;
+    font-size: calc(var(--index) * 3);
+}
+
+.caption {
+    position: relative;
+    right: 5vw;
+}
